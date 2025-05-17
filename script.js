@@ -164,9 +164,7 @@ function drawGameOver() {
   ctx.font = '50px Arial';
   ctx.textAlign = 'center';
   ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2);
-
-  const button = document.getElementById('restartButton');
-  button.style.display = 'block';
+  document.getElementById('restartButton').style.display = 'block';
 }
 
 function initGame() {
@@ -181,7 +179,7 @@ function initGame() {
   }
 
   document.getElementById('restartButton').style.display = 'none';
-  gameLoop();
+  requestAnimationFrame(gameLoop);
 }
 
 setInterval(() => {
