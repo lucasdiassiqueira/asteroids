@@ -10,7 +10,7 @@ canvas {
 
 #restartButton {
   position: absolute;
-  top: 50%;
+  top: calc(50% + 60px); /* abaixa o botão para não ficar em cima do texto */
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 15px 30px;
@@ -20,5 +20,5 @@ canvas {
   border-radius: 10px;
   cursor: pointer;
   display: none;
+  z-index: 10;
 }
-

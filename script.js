@@ -163,9 +163,10 @@ function drawGameOver() {
   ctx.fillStyle = 'red';
   ctx.font = '50px Arial';
   ctx.textAlign = 'center';
-  ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2);
+  ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2 - 20); // sobe o texto
   document.getElementById('restartButton').style.display = 'block';
 }
+
 
 function initGame() {
   bullets = [];
