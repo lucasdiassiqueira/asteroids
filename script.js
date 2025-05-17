@@ -4,10 +4,11 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const keys = {};
-const bullets = [];
-const asteroids = [];
+let bullets = [];
+let asteroids = [];
 let score = 0;
 let gameOver = false;
+let ship;
 
 class Ship {
   constructor() {
@@ -152,9 +153,6 @@ function checkCollisions() {
   });
 }
 
-const ship = new Ship();
-setInterval(spawnAsteroid, 2000);
-
 function drawScore() {
   ctx.fillStyle = 'white';
   ctx.font = '20px Arial';
@@ -166,7 +164,29 @@ function drawGameOver() {
   ctx.font = '50px Arial';
   ctx.textAlign = 'center';
   ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2);
+
+  const button = document.getElementById('restartButton');
+  button.style.display = 'block';
 }
+
+function initGame() {
+  bullets = [];
+  asteroids = [];
+  score = 0;
+  gameOver = false;
+  ship = new Ship();
+
+  for (let i = 0; i < 5; i++) {
+    spawnAsteroid();
+  }
+
+  document.getElementById('restartButton').style.display = 'none';
+  gameLoop();
+}
+
+setInterval(() => {
+  if (!gameOver) spawnAsteroid();
+}, 2000);
 
 function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -204,4 +224,4 @@ document.addEventListener('keydown', (e) => {
 
 document.addEventListener('keyup', (e) => keys[e.key] = false);
 
-gameLoop();
+initGame();
